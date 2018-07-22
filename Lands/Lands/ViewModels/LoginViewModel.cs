@@ -9,7 +9,6 @@ namespace Lands.ViewModels
     {
 
         #region Attributes
-        //private string email;
         private string password;
         private bool isRunning;
         private bool isEnabled;
@@ -61,8 +60,6 @@ namespace Lands.ViewModels
             }
         }
 
-
-
         private async void Login()
         {
             if (string.IsNullOrEmpty(this.Email))
@@ -81,7 +78,6 @@ namespace Lands.ViewModels
                     "You must enter a password",
                     "Accept"
                     );
-                this.Password = string.Empty;
                 return;
             }
 
@@ -97,6 +93,7 @@ namespace Lands.ViewModels
                     "Email or password incorrect",
                     "Accept"
                     );
+                this.Password = string.Empty;
                 return;
             }
 
