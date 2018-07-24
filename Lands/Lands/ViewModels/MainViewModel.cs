@@ -4,11 +4,19 @@ namespace Lands.ViewModels
     public class MainViewModel
     {
         #region ViewModels
-        public LoginViewModel Login {
+        public LoginViewModel Login
+        {
             get;
             set;
         }
-        public LandsViewModel Lands {
+        public LandsViewModel Lands
+        {
+            get;
+            set;
+        }
+
+        public LandViewModel Land
+        {
             get;
             set;
         }
