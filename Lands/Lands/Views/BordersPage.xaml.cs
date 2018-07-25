@@ -1,12 +1,13 @@
-﻿namespace Lands.Views
+﻿
+namespace Lands.Views
 {
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
 
     [XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class LandPage : ContentPage
+	public partial class BordersPage : ContentPage
 	{
-		public LandPage ()
+		public BordersPage ()
 		{
 			InitializeComponent ();
 		}

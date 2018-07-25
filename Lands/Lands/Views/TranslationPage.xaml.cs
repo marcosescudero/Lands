@@ -4,9 +4,9 @@
     using Xamarin.Forms.Xaml;
 
     [XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class LandPage : ContentPage
+	public partial class TranslationPage : ContentPage
 	{
-		public LandPage ()
+		public TranslationPage ()
 		{
 			InitializeComponent ();
 		}
