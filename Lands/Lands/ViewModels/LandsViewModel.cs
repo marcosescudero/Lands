@@ -1,14 +1,13 @@
 ﻿namespace Lands.ViewModels
 {
-    using System;
+    using GalaSoft.MvvmLight.Command;
+    using Helpers;
+    using Models;
+    using Services;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows.Input;
-    using GalaSoft.MvvmLight.Command;
-    //using Helpers;
-    using Models;
-    using Services;
     using Xamarin.Forms;
 
     public class LandsViewModel : BaseViewModel
@@ -66,9 +65,10 @@
             {
                 this.IsRefreshing = false;
                 await Application.Current.MainPage.DisplayAlert(
-                                    "Error",
+                                    Languages.Error,
                                     connection.Message,
-                                    "Accept");
+                                    Languages.Accept
+                                    );
                 await Application.Current.MainPage.Navigation.PopAsync(); // Es la flechita para atras
                 return;
             }
@@ -82,9 +82,10 @@
             {
                 this.IsRefreshing = false;
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
+                    Languages.Error,
                     response.Message,
-                    "Accept");
+                    Languages.Accept
+                    );
                 await Application.Current.MainPage.Navigation.PopAsync(); // Es la flechita para atras
                 return;
             }

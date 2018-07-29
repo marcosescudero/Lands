@@ -13,6 +13,7 @@
         private ObservableCollection<Currency> currencies;
         private ObservableCollection<Language> languages;
         #endregion
+
         #region Properties
         public Land Land
         {
