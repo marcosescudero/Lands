@@ -53,6 +53,11 @@
             get { return Resource.ForgotPassword; }
         }
 
+        public static string Menu
+        {
+            get { return Resource.Menu; }
+        }
+
 
     }
 
