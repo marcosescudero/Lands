@@ -32,6 +32,7 @@ namespace Lands
                 var mainViewmodel = MainViewModel.GetInstance();
                 mainViewmodel.Token = Settings.Token; // Guarda Token de la memoria (MainViewModel)
                 mainViewmodel.TokenType = Settings.TokenType; // Guarda TokenType de la memoria (MainViewModel)
+                mainViewmodel.Lands = new LandsViewModel(); // carga lands
                 this.MainPage = new MasterPage();
             }
 

@@ -160,8 +160,11 @@ namespace Lands.ViewModels
             var mainViewmodel = MainViewModel.GetInstance();
             mainViewmodel.Token = token.AccessToken; // Lo guardamos en memoria (en la mainViewModel)
             mainViewmodel.TokenType = token.TokenType; // Lo guardamos en memoria (en la mainViewModel)
-            Settings.Token = token.AccessToken; // Lo guardamos tambien en la Settings (Persistencia)
-            Settings.TokenType = token.TokenType; // Lo guardamos tambien en la Settings (Persistencia)
+            if (this.IsRemembered)
+            {
+                Settings.Token = token.AccessToken; // Lo guardamos tambien en la Settings (Persistencia)
+                Settings.TokenType = token.TokenType; // Lo guardamos tambien en la Settings (Persistencia)
+            }
 
 
             mainViewmodel.Lands = new LandsViewModel();
