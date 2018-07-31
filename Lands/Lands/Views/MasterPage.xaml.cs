@@ -9,7 +9,7 @@
 		public MasterPage ()
 		{
 			InitializeComponent ();
-           App.Navigation = Navigator;
-		}
-	}
+            App.Navigator = Navigator;
+        }
+    }
 }
