@@ -11,7 +11,6 @@
             BindingContext="{Binding Login}">
             <StackLayout
                 Padding="5">
-
                 <Image
                     Source="onu"
                     WidthRequest="200">
