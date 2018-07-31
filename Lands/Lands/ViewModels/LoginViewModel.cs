@@ -43,7 +43,6 @@ namespace Lands.ViewModels
             get;
             set;
         }
-
         public bool IsEnabled {
             get { return this.isEnabled; }
             set { SetValue(ref this.isEnabled, value); }
@@ -173,7 +172,5 @@ namespace Lands.ViewModels
 
         }
         #endregion
-
-
     }
 }

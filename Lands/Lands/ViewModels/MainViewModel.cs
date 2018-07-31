@@ -91,11 +91,7 @@
                 PageName = "LoginPage",
                 Title = Languages.LogOut
             });
-
         }
         #endregion
-
-
-
     }
 }
