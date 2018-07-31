@@ -1,13 +1,14 @@
-using System;
-using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Lands.Views; // Nuestra carpeta
 
-[assembly: XamlCompilation (XamlCompilationOptions.Compile)]
+[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Lands
 {
+    using Helpers;
+    using Lands.Views; // Nuestra carpeta
+    using Xamarin.Forms;
+    using ViewModels;
 
-	public partial class App : Application
+    public partial class App : Application
 	{
         #region Properties
         public static NavigationPage Navigation
@@ -22,8 +23,20 @@ namespace Lands
 		{
 			InitializeComponent();
 
+            // Verifico si hay token guardado en persistencia
+            if (string.IsNullOrEmpty(Settings.Token))
+            {
+                this.MainPage = new NavigationPage(new LoginPage());
+            } else
+            {
+                var mainViewmodel = MainViewModel.GetInstance();
+                mainViewmodel.Token = Settings.Token; // Guarda Token de la memoria (MainViewModel)
+                mainViewmodel.TokenType = Settings.TokenType; // Guarda TokenType de la memoria (MainViewModel)
+                this.MainPage = new MasterPage();
+            }
+
             //MainPage = new MainPage();
-            this.MainPage = new NavigationPage(new LoginPage());
+            //this.MainPage = new NavigationPage(new LoginPage());
             //this.MainPage = new MasterPage();
         }
         #endregion
