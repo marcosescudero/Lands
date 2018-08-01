@@ -34,7 +34,7 @@ namespace Lands.ViewModels
                 mainViewmodel.Token = string.Empty; // Elimino Token de la memoria (MainViewModel)
                 mainViewmodel.Token = string.Empty; // Elimino TokenType de la memoria (MainViewModel)
 
-                Application.Current.MainPage = new LoginPage();
+                Application.Current.MainPage = new NavigationPage(new LoginPage());
             }
         }
         #endregion
