@@ -33,10 +33,10 @@
         [Display(Name = "Image")]
         public string ImagePath { get; set; }
 
-        public int UserTypeId { get; set; }
+        public int UserTypeId { get; set; } 
 
-        //[JsonIgnore]
-        //public virtual UserType UserType { get; set; }
+        [JsonIgnore] // Para que no sea serializada por Jason
+        public virtual UserType UserType { get; set; } // virtual = no la manda a la base de datos.
 
         [NotMapped]
         public byte[] ImageArray { get; set; }
