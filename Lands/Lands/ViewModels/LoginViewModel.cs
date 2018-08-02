@@ -4,6 +4,7 @@ namespace Lands.ViewModels
     using GalaSoft.MvvmLight.Command;
     using Helpers;
     using Services;
+    using System;
     using System.Windows.Input;
     using Views;
     using Xamarin.Forms;
@@ -179,6 +180,22 @@ namespace Lands.ViewModels
             this.Password = string.Empty;
 
         }
+
+        public ICommand RegisterCommand
+        {
+            get
+            {
+                return new RelayCommand(Register);
+            }
+        
+        }
+
+        private async void Register()
+        {
+            MainViewModel.GetInstance().Register = new RegisterViewModel();
+            await Application.Current.MainPage.Navigation.PushAsync(new RegisterPage());
+        }
+
         #endregion
     }
 }

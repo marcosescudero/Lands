@@ -38,7 +38,7 @@
         [JsonIgnore] // Para que no sea serializada por Jason
         public virtual UserType UserType { get; set; } // virtual = no la manda a la base de datos.
 
-        [NotMapped]
+        [NotMapped] // Para que no impacte en la base de datos
         public byte[] ImageArray { get; set; }
 
         [NotMapped]

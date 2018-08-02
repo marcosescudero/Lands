@@ -84,16 +84,17 @@
                         HeightRequest="46"
                         HorizontalOptions="FillAndExpand"
                         IsEnabled="{Binding IsEnabled,Mode=TwoWay}" 
-                        Text="Login"
+                        Text="{i18n:Translate Login}"
                         TextColor="White">
                     </Button>
                     <Button
                         BackgroundColor="Purple"
                         BorderRadius="23"
+                        Command="{Binding RegisterCommand}"                        
                         HeightRequest="46"
                         HorizontalOptions="FillAndExpand"
                         IsEnabled="{Binding IsEnabled,Mode=TwoWay}"                         
-                        Text="Register"
+                        Text="{i18n:Translate Register}"
                         TextColor="White">
                     </Button>
                  </StackLayout>
