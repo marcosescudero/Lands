@@ -2,7 +2,7 @@
 namespace Lands.Backend.Helpers
 {
     using Domain;
-    using Models;
+    using Lands.Backend.Models;
     using System;
     using System.Threading.Tasks;
 

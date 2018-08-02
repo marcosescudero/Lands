@@ -1,13 +1,12 @@
 ﻿
 namespace Lands.Backend.Controllers
 {
-    using Models;
     using Domain;
     using System.Data.Entity;
     using System.Net;
     using System.Threading.Tasks;
     using System.Web.Mvc;
-    using Helpers;
+    using Lands.Backend.Models;
 
     [Authorize(Roles = "Admin")]
     public class UsersController : Controller
@@ -58,7 +57,7 @@ namespace Lands.Backend.Controllers
         //    return View(view);
         //}
 
-        private User ToUser(UserView view)
+        private User ToUser(Domain.UserView view)
         {
             return new User
             {

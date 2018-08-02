@@ -6,12 +6,13 @@ namespace Lands.Backend
     using System.Web.Optimization;
     using System.Web.Routing;
     using Helpers;
+
     public class MvcApplication : System.Web.HttpApplication
     {
         protected void Application_Start()
         {
             Database.SetInitializer(
-                new MigrateDatabaseToLatestVersion<Models.LocalDataContext, 
+                new MigrateDatabaseToLatestVersion<Models.LocalDataContext,
                 Migrations.Configuration>());
 
             this.CheckRolesAndSuperUser();
