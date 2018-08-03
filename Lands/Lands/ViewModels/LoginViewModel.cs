@@ -57,10 +57,11 @@ namespace Lands.ViewModels
             this.IsRemembered = true;
             this.IsEnabled = true;
 
+
             //this.Email = "marcosescudero@gmail.com";
             //this.Password = "1234";
-            this.Email = "juan@gmail.com";
-            this.Password = "123456";
+            //this.Email = "juan@gmail.com"; Esto era para evitar tener que escribir nuestro email en cada prueba
+            //this.Password = "123456";
 
         }
         #endregion

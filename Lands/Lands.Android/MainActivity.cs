@@ -1,7 +1,9 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Android.Runtime;
 using FFImageLoading.Forms.Platform;
+using Plugin.Permissions;
 
 namespace Lands.Droid
 {
@@ -19,6 +21,10 @@ namespace Lands.Droid
             CachedImageRenderer.Init(true);
             LoadApplication(new App());
         }
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
+        {
+            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        }
     }
 }
-
