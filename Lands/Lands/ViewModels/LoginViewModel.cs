@@ -11,7 +11,8 @@ namespace Lands.ViewModels
     public class LoginViewModel : BaseViewModel
     {
         #region Services
-        public ApiService apiService { get; set; }
+        public ApiService apiService;
+        public DataService dataService; // SQLite
 
         #endregion
 
@@ -54,6 +55,8 @@ namespace Lands.ViewModels
         public LoginViewModel()
         {
             this.apiService = new ApiService();
+            this.dataService = new DataService(); // SQLite
+
             this.IsRemembered = true;
             this.IsEnabled = true;
 
@@ -167,15 +170,18 @@ namespace Lands.ViewModels
                 this.Email
                 );
 
+            var userLocal = Converter.ToUserLocal(user);
+
             var mainViewmodel = MainViewModel.GetInstance();
             mainViewmodel.Token = token.AccessToken; // Lo guardamos en memoria (en la mainViewModel)
             mainViewmodel.TokenType = token.TokenType; // Lo guardamos en memoria (en la mainViewModel)
-            mainViewmodel.User = user;
+            mainViewmodel.User = userLocal;
 
             if (this.IsRemembered)
             {
                 Settings.Token = token.AccessToken; // Lo guardamos tambien en la Settings (Persistencia)
                 Settings.TokenType = token.TokenType; // Lo guardamos tambien en la Settings (Persistencia)
+                this.dataService.DeleteAllAndInsert(userLocal);
             }
 
 
