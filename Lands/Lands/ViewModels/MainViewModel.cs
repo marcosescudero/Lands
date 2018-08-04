@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using Helpers;
-
+    using Domain;
 
     public class MainViewModel
     {
@@ -27,6 +27,12 @@
         public string TokenType { get; set; }
 
         public ObservableCollection<MenuItemViewModel> Menus
+        {
+            get;
+            set;
+        }
+
+        public User User
         {
             get;
             set;

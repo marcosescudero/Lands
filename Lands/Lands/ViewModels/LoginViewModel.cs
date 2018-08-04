@@ -160,9 +160,18 @@ namespace Lands.ViewModels
                 return;
             }
 
+            var user = await this.apiService.GetUserByEmail(
+                apiSecurity,
+                "/api",
+                "/Users/GetUserByEmail",
+                this.Email
+                );
+
             var mainViewmodel = MainViewModel.GetInstance();
             mainViewmodel.Token = token.AccessToken; // Lo guardamos en memoria (en la mainViewModel)
             mainViewmodel.TokenType = token.TokenType; // Lo guardamos en memoria (en la mainViewModel)
+            mainViewmodel.User = user;
+
             if (this.IsRemembered)
             {
                 Settings.Token = token.AccessToken; // Lo guardamos tambien en la Settings (Persistencia)
