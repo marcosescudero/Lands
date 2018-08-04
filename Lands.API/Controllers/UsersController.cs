@@ -12,7 +12,9 @@ namespace Lands.API.Controllers
     using Helpers;
     using System.IO;
     using System;
-  
+    using Newtonsoft.Json.Linq;
+
+    [RoutePrefix("api/Users")]
     public class UsersController : ApiController
     {
         private DataContext db = new DataContext();
@@ -23,11 +25,13 @@ namespace Lands.API.Controllers
             return db.Users;
         }
 
-        // GET: api/Users/5
+        // GET: api/Users/juan@gmail.com
         [ResponseType(typeof(User))]
-        public async Task<IHttpActionResult> GetUser(int id)
+        public async Task<IHttpActionResult> GetUser(string email)
         {
-            User user = await db.Users.FindAsync(id);
+            var user = await db.Users.
+                Where(u => u.Email.ToLower() == email.ToLower()).
+                FirstOrDefaultAsync(); // Expresion Lamda (funcion anónima)
             if (user == null)
             {
                 return NotFound();
@@ -35,6 +39,40 @@ namespace Lands.API.Controllers
 
             return Ok(user);
         }
+
+        // POST: Ge tUser By Email
+        [HttpPost]
+        [Route("GetUserByEmail")]
+        public async Task<IHttpActionResult> GetUserByEmail (JObject form)
+        {
+
+
+            var email = string.Empty;
+            dynamic jsonObject = form;
+            try
+            {
+                email = jsonObject.Email.Value;
+
+            }
+            catch (Exception)
+            {
+
+                return BadRequest("Missing parameter.");
+            }
+
+
+
+            var user = await db.Users.
+                            Where(u => u.Email.ToLower() == email.ToLower()).
+                            FirstOrDefaultAsync(); // Expresion Lamda (funcion anónima)
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(user);
+        }
+
 
         // PUT: api/Users/5
         [ResponseType(typeof(void))]
