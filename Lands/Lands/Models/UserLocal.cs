@@ -1,6 +1,7 @@
 ﻿namespace Lands.Models
 {
     using SQLite.Net.Attributes;
+    using Xamarin.Forms;
 
     public class UserLocal
     {
@@ -28,9 +29,19 @@
                     return "noimage";
                 }
 
+                /*
                 return string.Format(
                     "http://landsapi1.azurewebsites.net/{0}",
                     ImagePath.Substring(1));
+                */
+
+                // Esto lo hice yo ME
+                return string.Format(
+                    "{0}/{1}",
+                    Application.Current.Resources["APISecurity"].ToString(),
+                    ImagePath.Substring(1));
+                ;
+
             }
         }
 

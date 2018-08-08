@@ -11,7 +11,8 @@
 
             <!-- Parameters -->
             <x:String x:Key="APILands">http://restcountries.eu</x:String>
-            <x:String x:Key="APISecurity">http://landsapi1.azurewebsites.net</x:String>
+            <x:String x:Key="APISecurity_OLD">http://landsapi1.azurewebsites.net</x:String>
+            <x:String x:Key="APISecurity">http://200.55.24.235:8080</x:String>
            
         </ResourceDictionary>
 	</Application.Resources>
