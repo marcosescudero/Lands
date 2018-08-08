@@ -64,15 +64,15 @@
 
         public T Find<T>(int pk, bool WithChildren) where T : class
         {
-            if (WithChildren)
-            {
-                return connection.GetAllWithChildren<T>().FirstOrDefault(m => m.GetHashCode() == pk);
+                if (WithChildren)
+                {
+                    return connection.GetAllWithChildren<T>().FirstOrDefault(m => m.GetHashCode() == pk);
+                }
+                else
+                {
+                    return connection.Table<T>().FirstOrDefault(m => m.GetHashCode() == pk);
+                }
             }
-            else
-            {
-                return connection.Table<T>().FirstOrDefault(m => m.GetHashCode() == pk);
-            }
-        }
 
         public void Dispose()
         {

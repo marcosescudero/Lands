@@ -37,8 +37,9 @@
 
                 // Esto lo hice yo ME
                 return string.Format(
-                    "{0}/{1}",
+                    "{0}{1}{2}",
                     Application.Current.Resources["APISecurity"].ToString(),
+                    "/",
                     ImagePath.Substring(1));
                 ;
 

@@ -240,7 +240,7 @@
                 Languages.ConfirmLabel,
                 Languages.UserRegisteredMessage,
                 Languages.Accept);
-            await Application.Current.MainPage.Navigation.PopAsync();
+            await Application.Current.MainPage.Navigation.PopAsync(); // elimina la RegiterPage para que se vea la LoginPage ?
         }
 
         public ICommand ChangeImageCommand
