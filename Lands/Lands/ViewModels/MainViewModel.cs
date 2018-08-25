@@ -80,7 +80,8 @@
         {
             if (instance == null)
             {
-                return new MainViewModel();
+                //return new MainViewModel();
+                instance = new MainViewModel();
             }
             return instance;
         }
