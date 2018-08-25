@@ -7,7 +7,8 @@
 
     public class DataService
     {
-        public bool DeleteAll<T>() where T : class
+        //public bool DeleteAll<T>() where T : class
+        public bool DeleteAll<T>() where T : new()
         {
             try
             {
@@ -29,7 +30,8 @@
             }
         }
 
-        public T DeleteAllAndInsert<T>(T model) where T : class
+        //public T DeleteAllAndInsert<T>(T model) where T : class
+        public T DeleteAllAndInsert<T>(T model) where T : new()
         {
             try
             {
@@ -53,7 +55,8 @@
             }
         }
 
-        public T InsertOrUpdate<T>(T model) where T : class
+        //public T InsertOrUpdate<T>(T model) where T : class
+        public T InsertOrUpdate<T>(T model) where T : new()
         {
             try
             {
@@ -88,7 +91,8 @@
             }
         }
 
-        public T Find<T>(int pk, bool withChildren) where T : class
+        //public T Find<T>(int pk, bool withChildren) where T : class
+        public T Find<T>(int pk, bool withChildren) where T : new()
         {
             using (var da = new DataAccess())
             {
@@ -96,7 +100,8 @@
             }
         }
 
-        public T First<T>(bool withChildren) where T : class
+        //public T First<T>(bool withChildren) where T : class
+        public T First<T>(bool withChildren) where T : new()
         {
             using (var da = new DataAccess())
             {
@@ -104,7 +109,8 @@
             }
         }
 
-        public List<T> Get<T>(bool withChildren) where T : class
+        //public List<T> Get<T>(bool withChildren) where T : class
+        public List<T> Get<T>(bool withChildren) where T : new()
         {
             using (var da = new DataAccess())
             {
@@ -128,7 +134,8 @@
             }
         }
 
-        public void Save<T>(List<T> list) where T : class
+        //public void Save<T>(List<T> list) where T : class
+        public void Save<T>(List<T> list) where T : new()
         {
             using (var da = new DataAccess())
             {

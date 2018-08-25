@@ -182,7 +182,7 @@ namespace Lands.ViewModels
                 Settings.Token = token.AccessToken; // Lo guardamos tambien en la Settings (Persistencia)
                 Settings.TokenType = token.TokenType; // Lo guardamos tambien en la Settings (Persistencia)
 
-                //this.dataService.DeleteAllAndInsert(userLocal); //sqlite
+                this.dataService.DeleteAllAndInsert(userLocal); //sqlite
             }
 
 

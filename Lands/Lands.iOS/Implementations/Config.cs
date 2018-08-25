@@ -4,12 +4,12 @@ namespace Lands.iOS.Implementations
 {
     using System;
     using Interfaces;
-    using SQLite.Net.Interop;
+    //using SQLite.Net.Interop;
 
     public class Config : IConfig
     {
         private string directoryDB;
-        private ISQLitePlatform platform;
+        //private ISQLitePlatform platform;
 
         public string DirectoryDB
         {
@@ -25,17 +25,17 @@ namespace Lands.iOS.Implementations
             }
         }
 
-        public ISQLitePlatform Platform
-        {
-            get
-            {
-                if (platform == null)
-                {
-                    platform = new SQLite.Net.Platform.XamarinIOS.SQLitePlatformIOS();
-                }
+        //public ISQLitePlatform Platform
+        //{
+        //    get
+        //    {
+        //        if (platform == null)
+        //        {
+        //            platform = new SQLite.Net.Platform.XamarinIOS.SQLitePlatformIOS();
+        //        }
 
-                return platform;
-            }
-        }
+        //        return platform;
+        //    }
+        //}
     }
 }
