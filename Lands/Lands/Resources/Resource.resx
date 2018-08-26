@@ -364,6 +364,6 @@
     <value>Forgot Password ?</value>
   </data>
   <data name="TokenValidation" xml:space="preserve">
-    <value>Token no valido</value>
+    <value>Token invalid</value>
   </data>
 </root>

@@ -5,7 +5,7 @@
 
     public class UserLocal
     {
-        [PrimaryKey]
+        [SQLite.PrimaryKey]
         public int UserId { get; set; }
 
         public string FirstName { get; set; }
@@ -26,16 +26,9 @@
             {
                 if (string.IsNullOrEmpty(ImagePath))
                 {
-                    return "noimage";
+                    return "no_image";
                 }
 
-                /*
-                return string.Format(
-                    "http://landsapi1.azurewebsites.net/{0}",
-                    ImagePath.Substring(1));
-                */
-
-                // Esto lo hice yo ME
                 return string.Format(
                     "{0}{1}{2}",
                     Application.Current.Resources["APISecurity"].ToString(),

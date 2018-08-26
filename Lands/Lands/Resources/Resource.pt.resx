@@ -363,4 +363,7 @@
   <data name="ForgotPassword" xml:space="preserve">
     <value>Esqueceu sua senha ?</value>
   </data>
+  <data name="TokenValidation" xml:space="preserve">
+    <value>Token inválido</value>
+  </data>
 </root>

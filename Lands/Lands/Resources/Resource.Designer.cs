@@ -781,7 +781,7 @@ namespace Lands.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Token no valido.
+        ///   Looks up a localized string similar to Token invalid.
         /// </summary>
         public static string TokenValidation {
             get {

@@ -18,6 +18,11 @@ namespace Lands
             get;
             internal set;
         }
+        public static MasterPage Master
+        {
+            get;
+            internal set;
+        }
         #endregion
 
         #region Constructors
@@ -44,7 +49,8 @@ namespace Lands
                 mainViewmodel.Lands = new LandsViewModel(); // carga lands
 
 
-                this.MainPage = new MasterPage();
+                //this.MainPage = new MasterPage();
+                Application.Current.MainPage = new MasterPage();
             }
 
             //MainPage = new MainPage();

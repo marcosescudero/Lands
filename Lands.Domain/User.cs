@@ -1,9 +1,8 @@
 ﻿namespace Lands.Domain
 {
-    using Newtonsoft.Json;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using Newtonsoft.Json;
 
     public class User
     {
@@ -51,11 +50,11 @@
             {
                 if (string.IsNullOrEmpty(ImagePath))
                 {
-                    return "noimage";
+                    return "no_image";
                 }
 
                 return string.Format(
-                    "http://landsapi1.azurewebsites.net/{0}",
+                "http://200.55.241.235:8080",
                     ImagePath.Substring(1));
             }
         }

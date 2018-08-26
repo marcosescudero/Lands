@@ -26,6 +26,8 @@ namespace Lands.ViewModels
         }
         private void Navigate()
         {
+            App.Master.IsPresented = false; // Esto cierra automaticamente el menú.
+
             if (this.PageName == "LoginPage")
             {
                 Settings.Token = string.Empty; // Elimino Token de persistencia
@@ -35,6 +37,11 @@ namespace Lands.ViewModels
                 mainViewmodel.Token = string.Empty; // Elimino TokenType de la memoria (MainViewModel)
 
                 Application.Current.MainPage = new NavigationPage(new LoginPage());
+            }
+            else if (this.PageName == "MyProfilePage")
+            {
+                MainViewModel.GetInstance().MyProfile = new MyProfileViewModel();
+                App.Navigator.PushAsync(new MyProfilePage());
             }
         }
         #endregion
