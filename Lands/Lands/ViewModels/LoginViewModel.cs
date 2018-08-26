@@ -167,6 +167,8 @@ namespace Lands.ViewModels
                 apiSecurity,
                 "/api",
                 "/Users/GetUserByEmail",
+                token.TokenType,
+                token.AccessToken,
                 this.Email
                 );
 

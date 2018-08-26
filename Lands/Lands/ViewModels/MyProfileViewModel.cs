@@ -15,6 +15,7 @@ namespace Lands.ViewModels
 
         #region Services
         private ApiService apiService;
+        private DataService dataService;
         #endregion
 
         #region Attributes
@@ -51,6 +52,7 @@ namespace Lands.ViewModels
         public MyProfileViewModel()
         {
             this.apiService = new ApiService();
+            this.dataService = new DataService();
             this.User = MainViewModel.GetInstance().User;
             this.ImageSource = this.User.ImageFullPath;
             this.IsEnabled = true;
@@ -214,9 +216,25 @@ namespace Lands.ViewModels
                 return;
             }
 
+            var userAPI = await this.apiService.GetUserByEmail(
+                apiSecurity,
+                "/api",
+                "/Users/GetUserByEmail",
+                MainViewModel.GetInstance().TokenType,
+                MainViewModel.GetInstance().Token,
+                this.User.Email
+                );
+
+            var userLocal = Converter.ToUserLocal(userAPI);
+
+            MainViewModel.GetInstance().User = userLocal;
+            this.dataService.Update(userLocal);
+
+
             this.IsRunning = false;
             this.IsEnabled = true;
 
+            
             await App.Navigator.PopAsync(); // elimina la RegiterPage para que se vea la LoginPage 
         }
         #endregion
