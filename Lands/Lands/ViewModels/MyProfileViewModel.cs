@@ -193,14 +193,15 @@ namespace Lands.ViewModels
                 imageArray = FilesHelper.ReadFully(this.file.GetStream());
             }
 
-            var userDomain = Converter.ToUserDomain(this.User, imageArray);
-
+            var userDomain = Converter.ToUserDomain(this.User, imageArray); // Convierte el user Local en user Domain
             var apiSecurity = Application.Current.Resources["APISecurity"].ToString();
-            var response = await this.apiService.Post(
+            var response = await this.apiService.Put(
                 apiSecurity,
                 "/api",
                 "/Users",
-                user);
+                MainViewModel.GetInstance().TokenType,
+                MainViewModel.GetInstance().Token,
+                userDomain);
 
             if (!response.IsSuccess)
             {
@@ -216,11 +217,7 @@ namespace Lands.ViewModels
             this.IsRunning = false;
             this.IsEnabled = true;
 
-            await Application.Current.MainPage.DisplayAlert(
-                Languages.ConfirmLabel,
-                Languages.UserRegisteredMessage,
-                Languages.Accept);
-            await Application.Current.MainPage.Navigation.PopAsync(); // elimina la RegiterPage para que se vea la LoginPage 
+            await App.Navigator.PopAsync(); // elimina la RegiterPage para que se vea la LoginPage 
         }
         #endregion
     }

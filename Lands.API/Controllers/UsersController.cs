@@ -42,6 +42,7 @@ namespace Lands.API.Controllers
 
         // POST: Ge tUser By Email
         [HttpPost]
+        [Authorize]
         [Route("GetUserByEmail")]
         public async Task<IHttpActionResult> GetUserByEmail (JObject form)
         {
@@ -75,17 +76,23 @@ namespace Lands.API.Controllers
 
 
         // PUT: api/Users/5
+        [Authorize]
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutUser(int id, User user)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
 
-            if (id != user.UserId)
+            if (user.ImageArray != null && user.ImageArray.Length > 0)
             {
-                return BadRequest();
+                var stream = new MemoryStream(user.ImageArray);
+                var guid = Guid.NewGuid().ToString();
+                var file = string.Format("{0}.jpg", guid);
+                var folder = "~/Content/Images";
+                var fullPath = string.Format("{0}/{1}", folder, file);
+                var response = FilesHelper.UploadPhoto(stream, folder, file);
+                if (response)
+                {
+                    user.ImagePath = fullPath;
+                }
             }
 
             db.Entry(user).State = EntityState.Modified;
@@ -106,21 +113,21 @@ namespace Lands.API.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok(user);
         }
 
         // POST: api/Users
         [ResponseType(typeof(User))]
-        public async Task<IHttpActionResult> PostUser(User user)
+        public async Task<IHttpActionResult> PostUser(User model)
         {
             //if (!ModelState.IsValid)
             //{
             //    return BadRequest(ModelState);
             //}
 
-            if (user.ImageArray != null && user.ImageArray.Length > 0)
+            if (model.ImageArray != null && model.ImageArray.Length > 0)
             {
-                var stream = new MemoryStream(user.ImageArray);
+                var stream = new MemoryStream(model.ImageArray);
                 var guid = Guid.NewGuid().ToString();
                 var file = string.Format("{0}.jpg", guid);
                 var folder = "~/Content/Images";
@@ -128,15 +135,15 @@ namespace Lands.API.Controllers
                 var response = FilesHelper.UploadPhoto(stream, folder, file);
                 if (response)
                 {
-                    user.ImagePath = fullPath;
+                    model.ImagePath = fullPath;
                 }
             }
 
-            db.Users.Add(user);
+            db.Users.Add(model);
             await db.SaveChangesAsync();
-            UsersHelper.CreateUserASP(user.Email, "User", user.Password);
+            UsersHelper.CreateUserASP(model.Email, "User", model.Password);
 
-            return CreatedAtRoute("DefaultApi", new { id = user.UserId }, user);
+            return CreatedAtRoute("DefaultApi", new { id = model.UserId }, model);
         }
 
         // DELETE: api/Users/5
