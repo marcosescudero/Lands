@@ -7,6 +7,7 @@ namespace Lands
     using Lands.Views; // Nuestra carpeta
     using Models;
     using Services;
+    using System;
     using ViewModels;
     using Xamarin.Forms;
 
@@ -31,26 +32,33 @@ namespace Lands
 			InitializeComponent();
 
             // Verifico si hay token guardado en persistencia
-            if (string.IsNullOrEmpty(Settings.Token))
+            if (Settings.IsRemembered == "true")
             {
-                this.MainPage = new NavigationPage(new LoginPage());
-            } else
-            {
+                
                 // Persistencia en SQlite
                 var dataService = new DataService();
-                var user = dataService.First<UserLocal>(false); 
+                var token = dataService.First<TokenResponse>(false);
 
-                // Carga la persistencias (de settings y de Sqlite) a la MainVieMmodel
-                var mainViewmodel = MainViewModel.GetInstance();
-                mainViewmodel.Token = Settings.Token; // Guarda Token de la memoria (MainViewModel)
-                mainViewmodel.TokenType = Settings.TokenType; // Guarda TokenType de la memoria (MainViewModel)
-                mainViewmodel.User = user; // Guarda el user (traido del sqLite) en la MainViewModel;
+                if (token != null && token.Expires > DateTime.Now)
+                {
+                    var user = dataService.First<UserLocal>(false);
 
-                mainViewmodel.Lands = new LandsViewModel(); // carga lands
+                    // Carga la persistencias (de settings y de Sqlite) a la MainVieMmodel
+                    var mainViewmodel = MainViewModel.GetInstance();
+                    mainViewmodel.Token = token; // Guarda Token de la memoria (MainViewModel)
+                    mainViewmodel.User = user; // Guarda el user (traido del sqLite) en la MainViewModel;
 
+                    mainViewmodel.Lands = new LandsViewModel(); // carga lands
 
-                //this.MainPage = new MasterPage();
-                Application.Current.MainPage = new MasterPage();
+                    Application.Current.MainPage = new MasterPage();
+                } else
+                {
+                    this.MainPage = new NavigationPage(new LoginPage());
+                }
+            }
+            else
+            {
+                this.MainPage = new NavigationPage(new LoginPage());
             }
 
             //MainPage = new MainPage();

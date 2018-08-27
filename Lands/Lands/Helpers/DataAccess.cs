@@ -26,6 +26,7 @@
                 Path.Combine(config.DirectoryDB, "Lands.db3"));
 
             connection.CreateTable<UserLocal>();
+            connection.CreateTable<TokenResponse>();
         }
 
         public void Insert<T>(T model)

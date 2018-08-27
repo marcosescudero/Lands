@@ -21,7 +21,6 @@ namespace Lands.ViewModels
         private string password;
         private bool isRunning;
         private bool isEnabled;
-
         #endregion
 
         #region Properties
@@ -156,7 +155,7 @@ namespace Lands.ViewModels
                 this.IsEnabled = true;
                 await Application.Current.MainPage.DisplayAlert(
                     Languages.Error,
-                    token.ErrorDescription,
+                    Languages.LoginError,
                     Languages.Accept
                     );
                 this.Password = string.Empty;
@@ -173,20 +172,22 @@ namespace Lands.ViewModels
                 );
 
             var userLocal = Converter.ToUserLocal(user);
+            userLocal.Password = this.Password;
 
             var mainViewmodel = MainViewModel.GetInstance();
-            mainViewmodel.Token = token.AccessToken; // Lo guardamos en memoria (en la mainViewModel)
-            mainViewmodel.TokenType = token.TokenType; // Lo guardamos en memoria (en la mainViewModel)
+            mainViewmodel.Token = token;    // Lo guardamos en memoria (en la mainViewModel)
             mainViewmodel.User = userLocal;
 
             if (this.IsRemembered)
             {
-                Settings.Token = token.AccessToken; // Lo guardamos tambien en la Settings (Persistencia)
-                Settings.TokenType = token.TokenType; // Lo guardamos tambien en la Settings (Persistencia)
-
-                this.dataService.DeleteAllAndInsert(userLocal); //sqlite
+                Settings.IsRemembered = "true"; // Lo guardamos tambien en la Settings (Persistencia)
+            } else
+            {
+                Settings.IsRemembered = "false"; // Lo guardamos tambien en la Settings (Persistencia)
             }
 
+            this.dataService.DeleteAllAndInsert(userLocal); //sqlite
+            this.dataService.DeleteAllAndInsert(token); //sqlite
 
             mainViewmodel.Lands = new LandsViewModel();
 

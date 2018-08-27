@@ -30,11 +30,10 @@ namespace Lands.ViewModels
 
             if (this.PageName == "LoginPage")
             {
-                Settings.Token = string.Empty; // Elimino Token de persistencia
-                Settings.TokenType = string.Empty; // Elimino TokenType de persistencia
-                var mainViewmodel = MainViewModel.GetInstance(); 
-                mainViewmodel.Token = string.Empty; // Elimino Token de la memoria (MainViewModel)
-                mainViewmodel.Token = string.Empty; // Elimino TokenType de la memoria (MainViewModel)
+                Settings.IsRemembered = "false"; // Elimino Token de persistencia
+                var mainViewmodel = MainViewModel.GetInstance();
+                mainViewmodel.Token = null; // Elimino Token de la memoria (MainViewModel)
+                mainViewmodel.User = null; // Elimino Usuario de la memoria (MainViewModel)
 
                 Application.Current.MainPage = new NavigationPage(new LoginPage());
             }
