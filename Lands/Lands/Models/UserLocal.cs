@@ -22,6 +22,25 @@
 
         public string Password { get; set; }
 
+        //public string ImageFullPath
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(ImagePath))
+        //        {
+        //            return "no_image";
+        //        }
+
+        //        return string.Format(
+        //            "{0}{1}{2}",
+        //            Application.Current.Resources["APISecurity"].ToString(),
+        //            "/",
+        //            ImagePath.Substring(1));
+        //        ;
+
+        //    }
+        //}
+
         public string ImageFullPath
         {
             get
@@ -31,15 +50,19 @@
                     return "no_image";
                 }
 
-                return string.Format(
-                    "{0}{1}{2}",
-                    Application.Current.Resources["APISecurity"].ToString(),
-                    "/",
-                    ImagePath.Substring(1));
-                ;
+                if (this.UserTypeId == 1)
+                {
+                    return string.Format(
+                      "{0}{1}{2}",
+                      Application.Current.Resources["APISecurity"].ToString(),
+                      "/",
+                      ImagePath.Substring(1));
+                }
 
+                return ImagePath;
             }
         }
+
 
         public string FullName
         {
