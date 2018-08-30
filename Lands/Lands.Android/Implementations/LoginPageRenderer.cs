@@ -7,6 +7,7 @@ namespace Lands.Droid.Implementations
     using System;
     using System.Threading.Tasks;
     using Android.App;
+    using Android.Content;
     using Models;
     using Services;
     using Xamarin.Auth;
@@ -14,7 +15,8 @@ namespace Lands.Droid.Implementations
 
     public class LoginPageRenderer : PageRenderer
     {
-        public LoginPageRenderer()
+        //public LoginPageRenderer()
+        public LoginPageRenderer(Context context) : base(context)
         {
             var activity = this.Context as Activity;
 

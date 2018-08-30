@@ -125,8 +125,6 @@ namespace Lands
             Application.Current.MainPage = new MasterPage();
             Settings.IsRemembered = "true";
 
-            mainViewModel.Lands = new LandsViewModel();
-            Application.Current.MainPage = new MasterPage();
         }
  
         protected override void OnStart()
